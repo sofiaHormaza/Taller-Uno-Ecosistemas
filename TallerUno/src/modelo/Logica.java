@@ -40,7 +40,7 @@ public class Logica {
 	}
 	
 	public void choque() {
-		//eliminar enemigos y balas cuando chocan
+		//eliminar enemigos y balas cuando chocan en el espacio del jugador 1
 		for (int i = 0; i < enemigos.size(); i++) {
 			for (int j = 0; j < defensa.size(); j++) {
 				if(app.dist(enemigos.get(i).getPosX(), enemigos.get(i).getPosY(), 
@@ -52,7 +52,7 @@ public class Logica {
 		}
 		
 		
-		//choque enemigos y jugador1
+		//choque enemigos y jugador 1
 		for (int k = 0; k < enemigos.size(); k++) {
 			if(app.dist(jugador1.getPosX(), jugador1.getPosY(), 
 					enemigos.get(k).getPosX(), enemigos.get(k).getPosY())<=65) {
@@ -63,6 +63,8 @@ public class Logica {
 	}
 	
 	public void mover() {
+		
+		//mover con las flechas del teclado al jugador 1
 		if(teclaRight && jugador1.getPosX()<450) {
 			jugador1.mover();
 		}
@@ -73,16 +75,21 @@ public class Logica {
 	}
 	
 	public void generarEnemigos() {
+		
+		//generar enemigos en el espacio del jugador 1
 		if(app.frameCount%50==0) {
 			enemigos.add(new Enemigo((int)app.random(50,450),20,(int)app.random(0,3),app));
 		}
 		
+		//generar enemigos en el espacio del jugador 2
 		if(app.frameCount%50==0) {
 			enemigos2.add(new Enemigo((int)app.random(550,950),20,(int)app.random(0,3),app));
 		}
 	}
 	
 	public void generarDefensa() {
+		
+		//generar defensa para el jugador 1
 		if(app.keyCode==app.UP) {
 			defensa.add(new Defensa(jugador1.getPosX(),jugador1.getPosY()-50,app));
 		}
@@ -90,20 +97,21 @@ public class Logica {
 	
 	public void borrarObjetos() {
 		
-		//borrar enemigos
+		//borrar enemigos del jugador 1 cuando se salen de la pantalla
 		for (int i = 0; i < enemigos.size(); i++) {
 			if(enemigos.get(i).getPosY()>=600) {
 				enemigos.remove(i);
 			}
 		}
 		
+		//borrar enemigos del jugador 2 cuando se salen de la pantalla
 		for (int i = 0; i < enemigos2.size(); i++) {
 			if(enemigos2.get(i).getPosY()>=600) {
 				enemigos2.remove(i);
 			}
 		}
 		
-		//borrar defensa
+		//borrar defensa del jugador 1 cuando se sale de la pantalla
 		for (int i = 0; i < defensa.size(); i++) {
 			if(defensa.get(i).getPosY()<=5) {
 				defensa.remove(i);
@@ -114,25 +122,30 @@ public class Logica {
 
 	
 	public void pintar() {
+		
+		//pintar jugadores
 		jugador1.pintar(app);
 		jugador2.pintar(app);
 		
-		
+		//pintar enemigos del jugador1
 		for (int i = 0; i < enemigos.size(); i++) {
 			enemigos.get(i).pintar(app);
 			enemigos.get(i).mover();
 		}
 		
+		//pintar enemigos del jugador 2
 		for (int j = 0; j < enemigos2.size(); j++) {
 			enemigos2.get(j).pintar(app);
 			enemigos2.get(j).mover();
 		}
 		
+		//pintar defensa del jugador 1
 		for (int i = 0; i < defensa.size(); i++) {
 			defensa.get(i).pintar(app);
 			defensa.get(i).disparar();
 		}
 		
+		//pintar defensa del jugador 2
 		for (int i = 0; i < defensa2.size(); i++) {
 			defensa2.get(i).pintar(app);
 			defensa2.get(i).disparar();

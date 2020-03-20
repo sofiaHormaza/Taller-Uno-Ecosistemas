@@ -24,6 +24,8 @@ public class Enemigo {
 	}
 	
 	public void pintar(PApplet app) {
+		
+		//pintar los enemigos segun su tipo
 		switch(tipo) {
 		case 0:
 			app.imageMode(app.CENTER);
@@ -49,6 +51,8 @@ public class Enemigo {
 	}
 	
 	public void mover() {
+		
+		//velocidad de los enemigos segun su tipo
 		switch(tipo) {
 			
 		case 0:
