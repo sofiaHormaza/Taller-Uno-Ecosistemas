@@ -60,7 +60,28 @@ public class Logica {
 				enemigos.remove(k);
 			}
 		}
+		
+		//eliminar enemigos y balas cuando chocan en el espacio del jugador 2
+		for (int l = 0; l < defensa2.size(); l++) {
+			for (int m = 0; m < enemigos2.size(); m++) {
+				if(app.dist(enemigos2.get(m).getPosX(), enemigos2.get(m).getPosY(), 
+						defensa2.get(l).getPosX(), defensa2.get(l).getPosY())<=20) {
+					enemigos2.remove(m);
+					defensa2.remove(l);
+			}
+				
+			}
+		}
+		
+		for (int k = 0; k < enemigos2.size(); k++) {
+			if(app.dist(jugador2.getPosX(), jugador2.getPosY(), 
+					enemigos2.get(k).getPosX(), enemigos2.get(k).getPosY())<=65) {
+				vidasJ2-=1;
+				enemigos2.remove(k);
+			}
+		}
 	}
+	
 	
 	public void mover() {
 		
@@ -94,6 +115,13 @@ public class Logica {
 			defensa.add(new Defensa(jugador1.getPosX(),jugador1.getPosY()-50,app));
 		}
 	}
+	
+	public void generarDefensaDos() {
+
+		//generar defensa para el jugador 2
+		defensa2.add(new Defensa(jugador2.getPosX(),jugador2.getPosY()-50,app));
+
+		}
 	
 	public void borrarObjetos() {
 		
@@ -146,9 +174,9 @@ public class Logica {
 		}
 		
 		//pintar defensa del jugador 2
-		for (int i = 0; i < defensa2.size(); i++) {
-			defensa2.get(i).pintar(app);
-			defensa2.get(i).disparar();
+		for (int m = 0; m < defensa2.size(); m++) {
+			defensa2.get(m).pintar(app);
+			defensa2.get(m).disparar();
 		}
 	}
 	

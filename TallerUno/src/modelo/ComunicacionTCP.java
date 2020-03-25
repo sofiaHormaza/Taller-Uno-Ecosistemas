@@ -83,7 +83,7 @@ public class ComunicacionTCP extends Thread {
 			break;
 			
 		case "DISP":
-			logica.getDefensa2().add(new Defensa(logica.jugador2.getPosX(), logica.jugador2.getPosY()-50, app));
+			logica.generarDefensaDos();
 			break;
 		}
 	}

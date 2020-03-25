@@ -64,6 +64,9 @@ public class Main extends PApplet{
 			if(logica.getVidasJ1()==0) {
 				pantalla=6;
 			}
+			if(logica.getVidasJ2()==0) {
+				pantalla=5;
+			}
 			break;
 		case 5:
 			image(ganador1,0,0,1000,600);
